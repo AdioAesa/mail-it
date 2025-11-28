@@ -1,0 +1,273 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../backend/node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(uuid())
+  clerkId       String   @unique  // Clerk user ID
+  email         String   @unique
+  firstName     String
+  lastName      String
+  phone         String?
+  role          Role     @default(SENDER)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  sentOrders    Order[]  @relation("SenderOrders")
+  mailerProfile MailerProfile?
+
+  @@map("users")
+}
+
+enum Role {
+  SENDER
+  MAILER
+  ADMIN
+}
+
+model MailerProfile {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Location
+  latitude        Float
+  longitude       Float
+  address         String
+  city            String
+  state           String
+  zipCode         String
+  radiusMiles     Int      @default(10)
+
+  // Status
+  isActive        Boolean  @default(true)
+  isVerified      Boolean  @default(false)
+  rating          Float    @default(5.0)
+  totalRatings    Int      @default(0)
+  completedJobs   Int      @default(0)
+
+  // Stripe Connect
+  stripeAccountId String?
+  stripeOnboarded Boolean  @default(false)
+
+  // Relations
+  assignedOrders  Order[]
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([latitude, longitude])
+  @@index([isActive])
+  @@map("mailer_profiles")
+}
+
+model Order {
+  id              String      @id @default(uuid())
+  orderNumber     String      @unique
+  status          OrderStatus @default(PENDING)
+
+  // Sender
+  senderId        String
+  sender          User        @relation("SenderOrders", fields: [senderId], references: [id])
+
+  // Card Content
+  cardType        CardType
+  cardTemplateId  String?
+  cardTemplate    CardTemplate? @relation(fields: [cardTemplateId], references: [id])
+  customImageUrl  String?
+  message         String      @db.Text
+  senderName      String      // Name to appear on card
+  recipientName   String
+
+  // Delivery Address
+  deliveryAddress String
+  deliveryCity    String
+  deliveryState   String
+  deliveryZip     String
+  latitude        Float
+  longitude       Float
+
+  // Mailer Assignment
+  mailerId        String?
+  mailer          MailerProfile? @relation(fields: [mailerId], references: [id])
+  assignedAt      DateTime?
+
+  // Pricing (all in cents to avoid floating point issues)
+  basePriceCents      Int
+  deliveryFeeCents    Int         @default(0)
+  addOnsTotalCents    Int         @default(0)
+  totalPriceCents     Int
+  platformFeeCents    Int         @default(0)
+  mailerPayoutCents   Int         @default(0)
+
+  // Payment
+  stripePaymentIntentId String?
+  stripePaidAt          DateTime?
+  isPaid                Boolean     @default(false)
+
+  // Delivery
+  deliveryType    DeliveryType @default(STANDARD)
+  scheduledDate   DateTime?
+  printedAt       DateTime?
+  inTransitAt     DateTime?
+  deliveredAt     DateTime?
+  deliveryPhotoUrl String?
+  deliveryNotes   String?
+
+  // Rating
+  mailerRating    Int?        // 1-5 stars
+  ratingComment   String?
+
+  // Add-ons
+  addOns          OrderAddOn[]
+
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  @@index([senderId])
+  @@index([mailerId])
+  @@index([status])
+  @@index([latitude, longitude])
+  @@index([createdAt])
+  @@map("orders")
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  ASSIGNED
+  PRINTING
+  IN_TRANSIT
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+enum CardType {
+  BIRTHDAY
+  CHRISTMAS
+  THANK_YOU
+  SYMPATHY
+  CONGRATULATIONS
+  ANNIVERSARY
+  VALENTINES
+  MOTHERS_DAY
+  FATHERS_DAY
+  GRADUATION
+  CUSTOM
+}
+
+enum DeliveryType {
+  STANDARD
+  RUSH
+  SCHEDULED
+}
+
+model CardTemplate {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  category    CardType
+  imageUrl    String
+  thumbnailUrl String?
+  basePriceCents Int    @default(700) // $7.00
+  isActive    Boolean  @default(true)
+  sortOrder   Int      @default(0)
+
+  orders      Order[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([category])
+  @@index([isActive])
+  @@map("card_templates")
+}
+
+model AddOn {
+  id          String       @id @default(uuid())
+  name        String
+  description String
+  priceCents  Int
+  imageUrl    String?
+  isActive    Boolean      @default(true)
+  sortOrder   Int          @default(0)
+
+  orderAddOns OrderAddOn[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("add_ons")
+}
+
+model OrderAddOn {
+  id          String   @id @default(uuid())
+  orderId     String
+  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  addOnId     String
+  addOn       AddOn    @relation(fields: [addOnId], references: [id])
+  priceCents  Int      // Price at time of order
+
+  @@unique([orderId, addOnId])
+  @@map("order_add_ons")
+}
+
+model LegacyLetter {
+  id              String   @id @default(uuid())
+  userId          String
+
+  // Recipient
+  recipientName   String
+  recipientEmail  String?
+  deliveryAddress String
+  deliveryCity    String
+  deliveryState   String
+  deliveryZip     String
+
+  // Content
+  message         String   @db.Text
+
+  // Scheduling
+  deliverOn       DateTime
+  reminderSent    Boolean  @default(false)
+
+  // Status
+  isDelivered     Boolean  @default(false)
+  deliveredAt     DateTime?
+  orderId         String?  // Created order when delivered
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([deliverOn])
+  @@index([userId])
+  @@map("legacy_letters")
+}
+
+// For tracking mailer earnings/payouts
+model Payout {
+  id              String   @id @default(uuid())
+  mailerId        String
+  amountCents     Int
+  stripeTransferId String?
+  status          PayoutStatus @default(PENDING)
+
+  createdAt       DateTime @default(now())
+  paidAt          DateTime?
+
+  @@map("payouts")
+}
+
+enum PayoutStatus {
+  PENDING
+  PROCESSING
+  PAID
+  FAILED
+}

@@ -1,0 +1,27 @@
+{
+  "name": "@mailit/integrations",
+  "version": "1.0.0",
+  "description": "Integration layer for MailIt - Stripe, Cloudinary, Geocoding, and Notifications",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mailit",
+    "integrations",
+    "stripe",
+    "cloudinary",
+    "geocoding"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "stripe": "^14.10.0",
+    "cloudinary": "^1.41.0",
+    "resend": "^3.0.0",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1"
+  }
+}

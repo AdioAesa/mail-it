@@ -1,0 +1,302 @@
+MailIt Project Structure
+========================
+
+mailit/
+│
+├── backend/                        # Node.js + Express Backend API
+│   │
+│   ├── src/                        # Source code
+│   │   ├── index.js                # Express app entry point
+│   │   │
+│   │   ├── middleware/             # Express middleware
+│   │   │   ├── auth.js             # Clerk authentication & user sync
+│   │   │   ├── errorHandler.js     # Global error handling
+│   │   │   └── validate.js         # Request validation
+│   │   │
+│   │   ├── routes/                 # API route handlers
+│   │   │   ├── index.js            # Route aggregator
+│   │   │   ├── orders.js           # Order CRUD operations
+│   │   │   ├── mailer.js           # Mailer registration & jobs
+│   │   │   ├── templates.js        # Card template endpoints
+│   │   │   ├── upload.js           # File upload handlers
+│   │   │   └── webhooks.js         # Stripe webhook handlers
+│   │   │
+│   │   ├── services/               # Business logic layer
+│   │   │   ├── geocoding.js        # Address geocoding & distance calc
+│   │   │   ├── matching.js         # Job matching algorithm
+│   │   │   ├── pricing.js          # Price calculations
+│   │   │   └── stripe.js           # Stripe API integration
+│   │   │
+│   │   └── utils/                  # Utility functions
+│   │       ├── generateOrderNumber.js  # Order number generator
+│   │       └── logger.js           # Winston logger
+│   │
+│   ├── scripts/                    # Utility scripts
+│   │   ├── seed.js                 # Database seeding
+│   │   ├── create-admin-templates.js  # Template management
+│   │   └── test-geocoding.js       # Test geocoding service
+│   │
+│   ├── package.json                # Dependencies & scripts
+│   ├── nodemon.json                # Nodemon configuration
+│   ├── .env.example                # Environment variables template
+│   ├── .gitignore                  # Git ignore rules
+│   │
+│   └── Documentation/
+│       ├── README.md               # Complete API documentation
+│       ├── QUICKSTART.md           # 5-minute setup guide
+│       ├── SCHEMA_MAPPING.md       # DB schema field mappings
+│       └── IMPLEMENTATION_STATUS.md # Implementation checklist
+│
+├── database/                       # Database configuration
+│   ├── prisma/
+│   │   ├── schema.prisma           # Prisma database schema
+│   │   └── seed.js                 # Database seed script
+│   │
+│   └── Documentation/
+│       ├── README.md               # Schema documentation
+│       ├── SCHEMA_OVERVIEW.md      # Schema details
+│       └── QUICK_START.md          # Database setup guide
+│
+├── frontend/                       # React/Next.js Frontend (To be built)
+│   └── (empty - ready for implementation)
+│
+├── integrations/                   # External integrations (To be built)
+│   └── (empty - ready for implementation)
+│
+├── DEPLOYMENT_SUMMARY.md           # Complete project overview
+└── PROJECT_STRUCTURE.txt           # This file
+
+===============================================================================
+
+API ENDPOINTS IMPLEMENTED
+=========================
+
+Authentication: All endpoints require Clerk JWT (except webhooks & templates)
+
+Orders (Customer Features)
+---------------------------
+POST   /api/orders                 Create new order
+GET    /api/orders                 List user's orders
+GET    /api/orders/:id             Get order details
+POST   /api/orders/:id/pay         Create Stripe payment intent
+PUT    /api/orders/:id             Update order (before payment)
+DELETE /api/orders/:id             Cancel order
+
+Mailer (Delivery Provider Features)
+------------------------------------
+POST   /api/mailer/register        Register as mailer
+GET    /api/mailer/profile         Get mailer profile
+PUT    /api/mailer/profile         Update mailer profile
+GET    /api/mailer/jobs            Get available jobs in radius
+GET    /api/mailer/jobs/active     Get mailer's active jobs
+POST   /api/mailer/jobs/:id/accept Accept a job
+PUT    /api/mailer/jobs/:id/status Update job status
+POST   /api/mailer/jobs/:id/complete  Mark delivered with proof
+GET    /api/mailer/earnings        Get earnings summary
+
+Templates
+---------
+GET    /api/templates              List all card templates
+GET    /api/templates/:id          Get template details
+
+Upload
+------
+POST   /api/upload/card-image      Upload custom card image
+POST   /api/upload/delivery-proof  Upload delivery proof photo
+
+Webhooks
+--------
+POST   /api/webhooks/stripe        Stripe webhook handler
+
+===============================================================================
+
+SERVICES IMPLEMENTED
+====================
+
+Pricing Service (src/services/pricing.js)
+------------------------------------------
+- Base card prices by type (Birthday, Christmas, Thank You, Custom)
+- Delivery fee calculation (Standard, Rush, Scheduled)
+- Revenue split calculation (70% mailer, 30% platform)
+- Complete pricing breakdown
+
+Geocoding Service (src/services/geocoding.js)
+----------------------------------------------
+- Address to latitude/longitude conversion (OpenStreetMap)
+- Haversine distance calculation between points
+- Find mailers within radius
+- Service area validation
+
+Stripe Service (src/services/stripe.js)
+----------------------------------------
+- Payment intent creation
+- Stripe Connect account creation
+- Onboarding link generation
+- Transfer funds to mailers
+- Webhook signature verification
+- Refund processing
+
+Matching Service (src/services/matching.js)
+--------------------------------------------
+- Get available jobs for mailers (location-based)
+- Get mailer's active jobs
+- Assign mailer to order
+- Calculate mailer earnings
+
+===============================================================================
+
+DATABASE MODELS
+===============
+
+User
+----
+- Clerk integration (clerkId)
+- Email, name, phone
+- Role (SENDER, MAILER, ADMIN)
+- Relations: sentOrders, mailerProfile
+
+MailerProfile
+-------------
+- Location (lat/lng, address, city, state, zip)
+- Service radius (default 10 miles)
+- Active status, verification, rating
+- Stripe Connect account details
+- Relations: assignedOrders
+
+Order
+-----
+- Order number (ML-YYYY-XXXXX format)
+- Sender, recipient details
+- Card type, template, custom image
+- Delivery address (geocoded)
+- Pricing (all in cents)
+- Payment details (Stripe)
+- Status tracking (PENDING → DELIVERED)
+- Delivery proof, notes, rating
+
+CardTemplate
+------------
+- Name, description, category
+- Image URLs (main + thumbnail)
+- Base price (in cents)
+- Active status, sort order
+
+AddOn, OrderAddOn
+-----------------
+- Optional add-ons for orders
+- Price tracking at time of order
+
+LegacyLetter
+------------
+- Future delivery scheduling feature
+
+Payout
+------
+- Mailer payout tracking
+- Stripe transfer details
+- Status tracking
+
+===============================================================================
+
+TECHNOLOGY STACK
+================
+
+Backend
+-------
+- Node.js + Express
+- Prisma ORM
+- PostgreSQL
+- Clerk (authentication)
+- Stripe (payments + Connect)
+- Cloudinary (image uploads)
+- Winston (logging)
+- Multer (file uploads)
+
+Frontend (To be built)
+----------------------
+- React or Next.js
+- Clerk React SDK
+- Stripe Elements
+- TailwindCSS (recommended)
+
+===============================================================================
+
+PRICING MODEL
+=============
+
+Base Card Prices
+----------------
+Birthday:        $7.00
+Christmas:       $8.00
+Thank You:       $6.00
+Custom:          $10.00
+
+Delivery Fees
+-------------
+Standard:        $0.00 (free)
+Rush:            $8.00
+Scheduled:       $2.00
+
+Revenue Split
+-------------
+Mailer:          70% of total
+Platform:        30% of total
+
+Example: $15 order = $10.50 to mailer, $4.50 to platform
+
+===============================================================================
+
+ORDER STATUS FLOW
+=================
+
+PENDING
+  ↓
+PAID (customer pays via Stripe)
+  ↓
+ASSIGNED (mailer accepts job)
+  ↓
+PRINTING (mailer prints card)
+  ↓
+IN_TRANSIT (mailer delivering)
+  ↓
+DELIVERED (proof uploaded, mailer paid)
+
+Alternative flows:
+- PENDING → CANCELLED (customer cancels)
+- PAID → CANCELLED → REFUNDED (refund processed)
+
+===============================================================================
+
+NEXT STEPS
+==========
+
+1. Schema Compatibility Updates (Required)
+   - Update field names in routes/services
+   - Convert prices from dollars to cents
+   - Test with Prisma Studio
+
+2. Environment Setup
+   - Install dependencies: npm install
+   - Generate Prisma client
+   - Configure .env file
+   - Run migrations
+   - Seed templates
+
+3. Testing
+   - Test all endpoints
+   - Verify Stripe integration
+   - Test file uploads
+   - Test webhook handling
+
+4. Frontend Development
+   - Build customer interface
+   - Build mailer interface
+   - Integrate with backend API
+
+5. Production Deployment
+   - Deploy backend API
+   - Deploy frontend
+   - Configure production webhooks
+   - Set up monitoring
+
+===============================================================================

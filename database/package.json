@@ -1,0 +1,30 @@
+{
+  "name": "mailit-database",
+  "version": "1.0.0",
+  "description": "Database layer for MailIt - Prisma ORM setup",
+  "main": "index.js",
+  "scripts": {
+    "db:migrate": "prisma migrate dev",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:generate": "prisma generate",
+    "db:seed": "node prisma/seed.js",
+    "db:studio": "prisma studio",
+    "db:push": "prisma db push",
+    "db:reset": "prisma migrate reset",
+    "db:setup": "prisma generate && prisma migrate deploy && npm run db:seed"
+  },
+  "keywords": [
+    "prisma",
+    "postgresql",
+    "mailit",
+    "database"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.22.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.22.0"
+  }
+}
