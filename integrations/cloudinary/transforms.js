@@ -43,7 +43,7 @@ const deliveryProofTransform = {
   quality: 'auto:good',
   fetch_format: 'auto',
   overlay: {
-    text: 'MailIt Delivery Proof',
+    text: 'NearRun Delivery Proof',
     font_family: 'Arial',
     font_size: 30,
     font_weight: 'bold',

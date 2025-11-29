@@ -22,7 +22,7 @@ export async function geocodeAddress(address, city, state, zip) {
 
     const response = await fetch(url, {
       headers: {
-        'User-Agent': 'MailIt App (contact@mailit.com)' // Required by Nominatim
+        'User-Agent': 'NearRun App (contact@nearrun.com)' // Required by Nominatim
       }
     });
 

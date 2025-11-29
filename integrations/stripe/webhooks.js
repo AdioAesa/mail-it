@@ -262,7 +262,7 @@ function getWebhookConfig() {
       'transfer.failed',
       'charge.refunded'
     ],
-    url: process.env.WEBHOOK_URL || 'https://api.mailit.app/webhooks/stripe'
+    url: process.env.WEBHOOK_URL || 'https://api.nearrun.app/webhooks/stripe'
   };
 }
 

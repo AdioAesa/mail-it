@@ -1,10 +1,10 @@
-# MailIt Frontend - Project Summary
+# NearRun Frontend - Project Summary
 
 ## 📋 Overview
 
-Complete React + Vite + Tailwind CSS frontend for MailIt - a gig-economy platform connecting people who want to send handwritten cards with local mailers who hand-deliver them.
+Complete React + Vite + Tailwind CSS frontend for NearRun - a gig-economy platform connecting people who want to send handwritten cards with local mailers who hand-deliver them.
 
-**Location**: `/home/ahdemirci/mailit/frontend/`
+**Location**: `/home/ahdemirci/nearrun/frontend/`
 
 ## ✅ What's Been Built
 

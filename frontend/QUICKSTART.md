@@ -1,10 +1,10 @@
-# MailIt Frontend - Quick Start Guide
+# NearRun Frontend - Quick Start Guide
 
 ## 🚀 Get Running in 5 Minutes
 
 ### Step 1: Install Dependencies
 ```bash
-cd /home/ahdemirci/mailit/frontend
+cd /home/ahdemirci/nearrun/frontend
 npm install
 ```
 

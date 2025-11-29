@@ -1,5 +1,5 @@
 /**
- * Central configuration for MailIt integrations
+ * Central configuration for NearRun integrations
  */
 
 require('dotenv').config();
@@ -30,7 +30,7 @@ const config = {
     apiKey: process.env.CLOUDINARY_API_KEY,
     apiSecret: process.env.CLOUDINARY_API_SECRET,
     secure: true,
-    uploadPreset: 'mailit_default'
+    uploadPreset: 'nearrun_default'
   },
 
   /**
@@ -38,8 +38,8 @@ const config = {
    */
   email: {
     apiKey: process.env.RESEND_API_KEY,
-    from: process.env.EMAIL_FROM || 'noreply@mailit.app',
-    replyTo: process.env.EMAIL_REPLY_TO || 'support@mailit.app'
+    from: process.env.EMAIL_FROM || 'noreply@nearrun.app',
+    replyTo: process.env.EMAIL_REPLY_TO || 'support@nearrun.app'
   },
 
   /**
@@ -52,7 +52,7 @@ const config = {
     minRadius: 1, // miles
     provider: 'nominatim', // OpenStreetMap Nominatim (free)
     nominatimUrl: 'https://nominatim.openstreetmap.org',
-    userAgent: 'MailIt-App/1.0',
+    userAgent: 'NearRun-App/1.0',
     rateLimit: 1000 // milliseconds between requests (Nominatim requires 1 req/sec)
   },
 

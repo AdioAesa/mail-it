@@ -7,7 +7,7 @@ A React component that displays an interactive map showing the recipient's deliv
 Install the required dependencies:
 
 ```bash
-cd /home/ahdemirci/mailit/frontend
+cd /home/ahdemirci/nearrun/frontend
 npm install react-leaflet leaflet
 ```
 
@@ -83,7 +83,7 @@ function MyComponent() {
 
 ## Styling
 
-The component uses Tailwind CSS with custom colors from the mailit theme:
+The component uses Tailwind CSS with custom colors from the nearrun theme:
 - `burgundy-600`: Recipient marker
 - `postal-600`: Mailer markers
 - `ink-*`: Text colors

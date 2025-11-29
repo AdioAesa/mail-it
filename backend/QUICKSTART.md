@@ -1,4 +1,4 @@
-# MailIt Backend - Quick Start Guide
+# NearRun Backend - Quick Start Guide
 
 Get the backend API running in under 5 minutes!
 
@@ -15,7 +15,7 @@ Get the backend API running in under 5 minutes!
 ### 1. Install Dependencies
 
 ```bash
-cd /home/ahdemirci/mailit/backend
+cd /home/ahdemirci/nearrun/backend
 npm install
 ```
 
@@ -32,7 +32,7 @@ PORT=3001
 NODE_ENV=development
 
 # Your PostgreSQL connection string
-DATABASE_URL=postgresql://username:password@localhost:5432/mailit
+DATABASE_URL=postgresql://username:password@localhost:5432/nearrun
 
 # Get from Clerk Dashboard
 CLERK_SECRET_KEY=sk_test_your_key_here
@@ -71,7 +71,7 @@ npm run dev
 You should see:
 
 ```
-MailIt API server running on port 3001
+NearRun API server running on port 3001
 Environment: development
 Frontend URL: http://localhost:5173
 ```
@@ -119,7 +119,7 @@ Import this example request:
 
 ```json
 {
-  "name": "MailIt API",
+  "name": "NearRun API",
   "item": [
     {
       "name": "Health Check",

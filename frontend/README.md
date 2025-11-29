@@ -1,6 +1,6 @@
-# MailIt Frontend
+# NearRun Frontend
 
-A modern React application for MailIt - a gig-economy platform for hand-delivered cards and letters.
+A modern React application for NearRun - a gig-economy platform for hand-delivered cards and letters.
 
 ## Tech Stack
 

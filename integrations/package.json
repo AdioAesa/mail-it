@@ -1,13 +1,13 @@
 {
-  "name": "@mailit/integrations",
+  "name": "@nearrun/integrations",
   "version": "1.0.0",
-  "description": "Integration layer for MailIt - Stripe, Cloudinary, Geocoding, and Notifications",
+  "description": "Integration layer for NearRun - Stripe, Cloudinary, Geocoding, and Notifications",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "mailit",
+    "nearrun",
     "integrations",
     "stripe",
     "cloudinary",

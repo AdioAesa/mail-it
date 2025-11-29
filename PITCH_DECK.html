@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NearRun - Investor Pitch Deck</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --copper: #B87333;
+            --copper-light: #CD853F;
+            --copper-dark: #8B4513;
+            --copper-glow: rgba(184, 115, 51, 0.4);
+            --charcoal: #1a1a1a;
+            --ash: #2a2a2a;
+            --smoke: #3a3a3a;
+            --bone: #f5f2ed;
+            --fog: #e8e4e0;
+            --mist: #c9c5c0;
+            --accent-green: #22c55e;
+            --accent-red: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Libre Baskerville', Georgia, serif;
+            background: var(--charcoal);
+            color: var(--bone);
+            line-height: 1.8;
+            position: relative;
+        }
+
+        /* Texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .section {
+            min-height: 100vh;
+            padding: 80px 60px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(184, 115, 51, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Typography */
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--copper);
+            text-shadow: 0 0 40px var(--copper-glow);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--bone);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--copper), transparent);
+        }
+
+        h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--copper-light);
+            margin-bottom: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        h4 {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--copper);
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: var(--fog);
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+
+        .tagline {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--mist);
+            margin-bottom: 2rem;
+        }
+
+        .slide-number {
+            font-family: 'Source Sans Pro', sans-serif;
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 0.9rem;
+            color: var(--smoke);
+            letter-spacing: 0.1em;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            align-items: center;
+            background: linear-gradient(180deg, var(--charcoal) 0%, #1a2e1a 50%, var(--charcoal) 100%);
+        }
+
+        .hero::before {
+            background: radial-gradient(ellipse at center, rgba(184, 115, 51, 0.15) 0%, transparent 60%);
+        }
+
+        .logo-icon {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 0 30px var(--copper-glow));
+        }
+
+        .badge {
+            font-family: 'Source Sans Pro', sans-serif;
+            display: inline-block;
+            padding: 12px 30px;
+            border: 1px solid var(--copper);
+            color: var(--copper);
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-top: 3rem;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(184, 115, 51, 0.08);
+            border: 1px solid rgba(184, 115, 51, 0.3);
+            border-radius: 4px;
+            padding: 2rem;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--copper-dark), var(--copper), var(--copper-dark));
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h4 {
+            margin-top: 0;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        /* Lists */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        ul li {
+            font-size: 1.1rem;
+            color: var(--fog);
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            border-bottom: 1px solid rgba(184, 115, 51, 0.1);
+        }
+
+        ul li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--copper);
+        }
+
+        ul li:last-child {
+            border-bottom: none;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        th, td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(184, 115, 51, 0.2);
+        }
+
+        th {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--copper);
+            background: rgba(184, 115, 51, 0.1);
+        }
+
+        td {
+            color: var(--fog);
+            font-size: 1rem;
+        }
+
+        tr:hover td {
+            background: rgba(184, 115, 51, 0.05);
+        }
+
+        .yes {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        .no {
+            color: var(--accent-red);
+            opacity: 0.7;
+        }
+
+        /* Blockquotes */
+        blockquote {
+            border-left: 3px solid var(--copper);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            background: rgba(184, 115, 51, 0.05);
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--mist);
+            position: relative;
+        }
+
+        blockquote::before {
+            content: '"';
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            color: var(--copper);
+            opacity: 0.3;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+        }
+
+        /* Big Numbers */
+        .big-number {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--copper);
+            text-shadow: 0 0 30px var(--copper-glow);
+            line-height: 1;
+        }
+
+        /* Stat Cards */
+        .stat-card {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+        }
+
+        .stat-card .number {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--copper);
+            text-shadow: 0 0 20px var(--copper-glow);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .label {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 0.9rem;
+            color: var(--mist);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Flow Steps */
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            background: rgba(184, 115, 51, 0.05);
+            border-left: 3px solid var(--copper);
+            margin: 1rem 0;
+            transition: background 0.3s ease;
+        }
+
+        .flow-step:hover {
+            background: rgba(184, 115, 51, 0.1);
+        }
+
+        .flow-step .step-num {
+            font-family: 'Cinzel', serif;
+            width: 45px;
+            height: 45px;
+            border: 2px solid var(--copper);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--copper);
+            flex-shrink: 0;
+        }
+
+        .flow-step span:not(.step-num) {
+            color: var(--fog);
+            font-size: 1.1rem;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background: var(--ash);
+            border: 1px solid rgba(184, 115, 51, 0.2);
+            border-radius: 4px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-family: 'Source Code Pro', 'Monaco', monospace;
+            font-size: 0.95rem;
+            color: var(--mist);
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.8;
+        }
+
+        /* Section Divider */
+        .divider {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--copper), transparent);
+            margin: 3rem auto;
+        }
+
+        /* Highlight */
+        .highlight {
+            color: var(--copper);
+            font-weight: 600;
+        }
+
+        /* Footer/Closing */
+        .closing {
+            text-align: center;
+            align-items: center;
+        }
+
+        .closing h1 {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info {
+            margin-top: 4rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+            text-align: center;
+            max-width: none;
+        }
+
+        /* Phase Cards */
+        .phase-label {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 0.8rem;
+            color: var(--copper);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .grid-3, .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 50px 25px;
+                min-height: auto;
+                padding-top: 60px;
+                padding-bottom: 60px;
+            }
+
+            .container {
+                max-width: 100%;
+            }
+
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            h1 {
+                font-size: clamp(2rem, 8vw, 3rem);
+                letter-spacing: 0.1em;
+            }
+
+            h2 {
+                font-size: clamp(1.5rem, 6vw, 2rem);
+                letter-spacing: 0.08em;
+                margin-bottom: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+                letter-spacing: 0.1em;
+                margin-top: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            h4 {
+                font-size: 1rem;
+                margin-top: 1.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .big-number {
+                font-size: 2.5rem;
+            }
+
+            .slide-number {
+                top: 15px;
+                right: 20px;
+                font-size: 0.8rem;
+            }
+
+            .logo-icon {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .badge {
+                padding: 10px 20px;
+                font-size: 0.8rem;
+                margin-top: 2rem;
+            }
+
+            /* Cards */
+            .card {
+                padding: 1.5rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .stat-card .number {
+                font-size: 2rem;
+            }
+
+            .stat-card .label {
+                font-size: 0.8rem;
+            }
+
+            /* Tables */
+            table {
+                font-size: 0.85rem;
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            th, td {
+                padding: 0.7rem 0.8rem;
+            }
+
+            /* Lists */
+            ul li {
+                font-size: 1rem;
+                padding: 0.6rem 0;
+                padding-left: 1.5rem;
+            }
+
+            /* Blockquotes */
+            blockquote {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+                margin: 1.5rem 0;
+            }
+
+            blockquote::before {
+                font-size: 2.5rem;
+                top: -5px;
+                left: 5px;
+            }
+
+            /* Flow steps */
+            .flow-step {
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .flow-step .step-num {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+
+            .flow-step span:not(.step-num) {
+                font-size: 0.95rem;
+            }
+
+            /* Code blocks */
+            .code-block {
+                padding: 1rem;
+                font-size: 0.75rem;
+                line-height: 1.6;
+            }
+
+            /* Divider */
+            .divider {
+                margin: 2rem auto;
+            }
+
+            /* Phase label */
+            .phase-label {
+                font-size: 0.7rem;
+            }
+
+            /* Contact info */
+            .contact-info p {
+                font-size: 1rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section {
+                padding: 40px 15px;
+                padding-top: 50px;
+                padding-bottom: 50px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                letter-spacing: 0.08em;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            h3 {
+                font-size: 1.1rem;
+            }
+
+            .big-number {
+                font-size: 2rem;
+            }
+
+            .logo-icon {
+                font-size: 2.5rem;
+            }
+
+            table {
+                font-size: 0.75rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+
+            .stat-card .number {
+                font-size: 1.8rem;
+            }
+
+            .flow-step {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .code-block {
+                font-size: 0.65rem;
+            }
+
+            blockquote {
+                font-size: 0.9rem;
+                padding: 0.8rem 1rem;
+            }
+        }
+
+        /* Drip Animation */
+        @keyframes drip {
+            0% { height: 0; opacity: 0; }
+            10% { opacity: 1; }
+            70% { height: 100%; opacity: 1; }
+            100% { height: 100%; opacity: 0; }
+        }
+
+        .drip-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 1px;
+            background: linear-gradient(180deg, var(--copper), transparent);
+            animation: drip 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<section class="section hero">
+    <div class="container" style="text-align: center;">
+        <div class="logo-icon">&#9993;</div>
+        <h1>NearRun</h1>
+        <p class="tagline" style="text-align: center;">The Human Touch in a Digital World</p>
+        <p style="text-align: center; max-width: none; color: var(--mist);">Hand-delivered greeting cards. Powered by your neighbors.</p>
+        <div class="badge">Seed Round &bull; 2025</div>
+    </div>
+    <span class="slide-number">01 / 18</span>
+</section>
+
+<!-- Slide 2: The Problem -->
+<section class="section">
+    <div class="container">
+        <h2>The Problem</h2>
+        <h3>Digital Killed the Greeting Card</h3>
+        <ul>
+            <li><span class="highlight">6 billion</span> greeting cards sent annually in the US, but the industry is declining</li>
+            <li>E-cards feel <span class="highlight">impersonal</span> and forgettable</li>
+            <li>Traditional mail takes <span class="highlight">3-5 days</span> and often arrives late</li>
+            <li><span class="highlight">Nobody remembers</span> the last e-card they received</li>
+            <li>People want connection, but convenience wins</li>
+        </ul>
+        <blockquote>
+            I wanted to send my mom flowers for her birthday across the country, but I forgot until the last day and couldn't find anything personal enough.
+        </blockquote>
+        <h4>The Real Problem</h4>
+        <p style="font-size: 1.3rem; color: var(--bone);">We've traded meaningful gestures for convenient but forgettable ones.</p>
+    </div>
+    <span class="slide-number">02 / 18</span>
+</section>
+
+<!-- Slide 3: The Solution -->
+<section class="section">
+    <div class="container">
+        <h2>The Solution</h2>
+        <h3>Same-Day Hand-Delivered Cards</h3>
+        <p>A gig-economy platform that connects people who want to send heartfelt cards with local "Mailers" who hand-deliver them.</p>
+
+        <h4>How It Works</h4>
+        <div class="flow-step"><span class="step-num">1</span> <span><strong>Choose</strong> a beautiful card template or upload your own</span></div>
+        <div class="flow-step"><span class="step-num">2</span> <span><strong>Write</strong> your personal message</span></div>
+        <div class="flow-step"><span class="step-num">3</span> <span><strong>Add</strong> optional extras — flowers, chocolates, gift cards</span></div>
+        <div class="flow-step"><span class="step-num">4</span> <span><strong>Send</strong> — a local Mailer hand-delivers it same-day</span></div>
+
+        <div class="divider"></div>
+        <p style="font-size: 1.4rem; color: var(--copper); font-style: italic; text-align: center;">
+            The Magic: A real person delivers a real card, with a real smile.
+        </p>
+    </div>
+    <span class="slide-number">03 / 18</span>
+</section>
+
+<!-- Slide 4: Why This Works -->
+<section class="section">
+    <div class="container">
+        <h2>Why This Works</h2>
+        <h3>The Perfect Storm</h3>
+        <table>
+            <tr><th>Factor</th><th>Opportunity</th></tr>
+            <tr><td>Gig Economy</td><td>59M Americans freelance; flexible work is the new normal</td></tr>
+            <tr><td>Experience Economy</td><td>Consumers pay 4x more for experiences vs. things</td></tr>
+            <tr><td>Last-Mile Innovation</td><td>DoorDash proved hyper-local delivery works</td></tr>
+            <tr><td>Digital Fatigue</td><td>73% feel overwhelmed by digital communication</td></tr>
+            <tr><td>Meaningful Moments</td><td>Post-COVID, people crave authentic connection</td></tr>
+        </table>
+        <p style="font-size: 1.2rem; color: var(--copper); margin-top: 2rem;">
+            We're not competing with Hallmark. We're competing with "doing nothing."
+        </p>
+    </div>
+    <span class="slide-number">04 / 18</span>
+</section>
+
+<!-- Slide 5: Product Demo -->
+<section class="section">
+    <div class="container">
+        <h2>Product</h2>
+        <h3>Customer Experience</h3>
+        <div class="code-block">Step 1: Select Card Type
+        Birthday | Thank You | Sympathy | Congratulations | Holiday | Custom
+
+Step 2: Choose Template or Upload Custom Image
+        12 beautiful pre-designed cards
+
+Step 3: Write Your Message
+        "Happy Birthday Mom! Wishing you all the joy in the world."
+
+Step 4: Add Extras (Optional)
+        + Local Flowers .............. $15
+        + Box of Chocolates .......... $12
+        + Gift Card .................. $25+
+        + Balloon Bouquet ............ $10
+        + Calligraphy Upgrade ........ $5
+
+Step 5: Choose Delivery
+        Standard ($7) | Rush 2-Hour ($15) | Scheduled ($9)
+
+Step 6: Pay & Track
+        Real-time GPS tracking • Photo proof of delivery</div>
+    </div>
+    <span class="slide-number">05 / 18</span>
+</section>
+
+<!-- Slide 6: Mailer Experience -->
+<section class="section">
+    <div class="container">
+        <h2>For Mailers</h2>
+        <h3>Gig Workers Earn on Their Schedule</h3>
+        <p class="big-number">$15–25/hour</p>
+        <p style="color: var(--mist); margin-top: 0.5rem;">on your own schedule</p>
+
+        <div class="grid-2" style="margin-top: 3rem;">
+            <div class="card">
+                <h4>How It Works</h4>
+                <ul>
+                    <li>Sign up and verify identity</li>
+                    <li>Set your delivery radius (5–25 miles)</li>
+                    <li>Accept jobs that fit your schedule</li>
+                    <li>Print card at home or pickup from partner</li>
+                    <li>Deliver with a smile</li>
+                    <li>Get paid instantly via Stripe</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h4>Why Mailers Love It</h4>
+                <ul>
+                    <li>More personal than food delivery</li>
+                    <li>Flexible hours — work when you want</li>
+                    <li>Tips are common (happy recipients!)</li>
+                    <li>Feel-good work that matters</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <span class="slide-number">06 / 18</span>
+</section>
+
+<!-- Slide 7: Legacy Letters -->
+<section class="section">
+    <div class="container">
+        <h2>Unique Feature</h2>
+        <h3>Legacy Letters: Beyond the Present</h3>
+        <p>Schedule cards for <span class="highlight">future delivery</span> — days, months, or years ahead.</p>
+
+        <h4>Use Cases</h4>
+        <ul>
+            <li>Birthday cards for the next 10 years for your kids</li>
+            <li>Anniversary cards scheduled in advance</li>
+            <li>Memorial letters delivered after you're gone</li>
+            <li>Graduation cards from grandparents who passed</li>
+            <li>"Open when you're 18" letters from parents</li>
+        </ul>
+
+        <blockquote>
+            I have cancer. I want my grandchildren to receive birthday cards from me for the rest of their lives.
+        </blockquote>
+
+        <p style="color: var(--accent-green); font-size: 1.1rem;">
+            This feature generates 47% higher emotional engagement and 3x social sharing.
+        </p>
+    </div>
+    <span class="slide-number">07 / 18</span>
+</section>
+
+<!-- Slide 8: Market Opportunity -->
+<section class="section">
+    <div class="container">
+        <h2>Market Opportunity</h2>
+        <h3>Total Addressable Market</h3>
+
+        <div class="grid-3">
+            <div class="card stat-card">
+                <span class="number">$7.5B</span>
+                <span class="label">US Greeting Card Market</span>
+            </div>
+            <div class="card stat-card">
+                <span class="number">$12B</span>
+                <span class="label">Gift Delivery Market</span>
+            </div>
+            <div class="card stat-card">
+                <span class="number">$8B</span>
+                <span class="label">Flower Delivery Market</span>
+            </div>
+        </div>
+
+        <h3>The "Meaningful Moments" Market</h3>
+        <p class="big-number" style="margin-bottom: 0.5rem;">$28B</p>
+        <p style="color: var(--mist);">combined market opportunity</p>
+
+        <h4>Initial Focus</h4>
+        <ul>
+            <li>Last-minute gifters</li>
+            <li>Long-distance relationships</li>
+            <li>Premium experience seekers</li>
+            <li>Memorial and legacy occasions</li>
+        </ul>
+    </div>
+    <span class="slide-number">08 / 18</span>
+</section>
+
+<!-- Slide 9: Business Model -->
+<section class="section">
+    <div class="container">
+        <h2>Business Model</h2>
+        <h3>Unit Economics Per Order</h3>
+
+        <div class="grid-2">
+            <div class="code-block" style="font-size: 0.9rem;">Average Order Value:           $22.00
+├── Card Price:                $ 7.00
+├── Delivery Fee:              $ 7.00
+└── Add-ons (avg):             $ 8.00
+
+Revenue Split:
+├── Mailer Payout (70%):       $15.40
+└── Platform Revenue (30%):    $ 6.60
+    ├── Card COGS:             $ 1.50
+    ├── Payment Processing:    $ 0.66
+    └── Gross Profit:          $ 4.44
+
+Gross Margin:                  ~20%
+Contribution Margin (scale):   ~35%</div>
+            <div class="card">
+                <h4>Revenue Streams</h4>
+                <ul>
+                    <li>Platform fee on every transaction</li>
+                    <li>Add-on partnerships (flowers, gifts)</li>
+                    <li>Premium subscription (Legacy Letters)</li>
+                    <li>Enterprise API (employee recognition)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <span class="slide-number">09 / 18</span>
+</section>
+
+<!-- Slide 10: Competitive Landscape -->
+<section class="section">
+    <div class="container">
+        <h2>Competition</h2>
+        <h3>Why We Win</h3>
+
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>NearRun</th>
+                <th>Hallmark</th>
+                <th>Moonpig</th>
+                <th>1-800-Flowers</th>
+            </tr>
+            <tr>
+                <td>Same-Day Delivery</td>
+                <td class="yes">Yes</td>
+                <td class="no">No</td>
+                <td class="no">No</td>
+                <td>Sometimes</td>
+            </tr>
+            <tr>
+                <td>Hand-Delivered</td>
+                <td class="yes">Yes</td>
+                <td class="no">No</td>
+                <td class="no">No</td>
+                <td class="no">No</td>
+            </tr>
+            <tr>
+                <td>Custom Cards</td>
+                <td class="yes">Yes</td>
+                <td>Limited</td>
+                <td class="yes">Yes</td>
+                <td class="no">No</td>
+            </tr>
+            <tr>
+                <td>Add-on Gifts</td>
+                <td class="yes">Yes</td>
+                <td class="no">No</td>
+                <td class="no">No</td>
+                <td class="yes">Yes</td>
+            </tr>
+            <tr>
+                <td>Legacy Letters</td>
+                <td class="yes">Yes</td>
+                <td class="no">No</td>
+                <td class="no">No</td>
+                <td class="no">No</td>
+            </tr>
+            <tr>
+                <td>Personal Touch</td>
+                <td class="yes">Human</td>
+                <td>Machine</td>
+                <td>Machine</td>
+                <td>Machine</td>
+            </tr>
+        </table>
+
+        <h4>Our Moat</h4>
+        <ul>
+            <li>Network effects — more mailers = faster delivery = more orders</li>
+            <li>Emotional brand loyalty</li>
+            <li>Legacy Letters IP</li>
+            <li>Local market density</li>
+        </ul>
+    </div>
+    <span class="slide-number">10 / 18</span>
+</section>
+
+<!-- Slide 11: Go-to-Market -->
+<section class="section">
+    <div class="container">
+        <h2>Go-to-Market</h2>
+        <h3>Phased Expansion Strategy</h3>
+
+        <div class="grid-2">
+            <div class="card">
+                <p class="phase-label">Phase 1 • Months 1–6</p>
+                <h4 style="margin-top: 0.5rem;">Austin Launch</h4>
+                <ul>
+                    <li>Launch in Austin, TX (strong gig economy)</li>
+                    <li>Target: 500 orders/month by month 6</li>
+                    <li>Partner with universities for Mailers</li>
+                    <li>Social media + local PR</li>
+                </ul>
+            </div>
+            <div class="card">
+                <p class="phase-label">Phase 2 • Months 7–12</p>
+                <h4 style="margin-top: 0.5rem;">Texas Expansion</h4>
+                <ul>
+                    <li>Expand to Houston, Dallas, San Antonio</li>
+                    <li>Target: 5,000 orders/month</li>
+                    <li>Add-on partnerships begin</li>
+                </ul>
+            </div>
+            <div class="card">
+                <p class="phase-label">Phase 3 • Year 2</p>
+                <h4 style="margin-top: 0.5rem;">National Rollout</h4>
+                <ul>
+                    <li>Top 25 metros</li>
+                    <li>Target: 50,000 orders/month</li>
+                    <li>Enterprise sales begin</li>
+                    <li>Legacy Letters subscription launch</li>
+                </ul>
+            </div>
+            <div class="card">
+                <p class="phase-label">Phase 4 • Year 3+</p>
+                <h4 style="margin-top: 0.5rem;">Platform Expansion</h4>
+                <ul>
+                    <li>API for integrations</li>
+                    <li>International expansion (UK, Canada)</li>
+                    <li>Additional verticals</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <span class="slide-number">11 / 18</span>
+</section>
+
+<!-- Slide 12: Traction -->
+<section class="section">
+    <div class="container">
+        <h2>Traction</h2>
+        <h3>What We've Built</h3>
+
+        <table>
+            <tr><th>Component</th><th>Status</th></tr>
+            <tr><td>Full-stack MVP</td><td class="yes">Complete</td></tr>
+            <tr><td>Customer Web App</td><td class="yes">Complete</td></tr>
+            <tr><td>Mailer Mobile Experience</td><td class="yes">Complete</td></tr>
+            <tr><td>Payment Processing (Stripe)</td><td class="yes">Integrated</td></tr>
+            <tr><td>Mailer Payouts (Stripe Connect)</td><td class="yes">Integrated</td></tr>
+            <tr><td>Geolocation Matching</td><td class="yes">Integrated</td></tr>
+            <tr><td>Image Upload (Cloudinary)</td><td class="yes">Integrated</td></tr>
+            <tr><td>Email Notifications</td><td class="yes">Integrated</td></tr>
+            <tr><td>Database & API</td><td class="yes">Production-ready</td></tr>
+        </table>
+
+        <div class="divider"></div>
+        <p style="font-size: 1.4rem; color: var(--accent-green); text-align: center;">
+            Code Complete. Ready for beta launch.
+        </p>
+    </div>
+    <span class="slide-number">12 / 18</span>
+</section>
+
+<!-- Slide 13: Team -->
+<section class="section">
+    <div class="container">
+        <h2>Team</h2>
+        <h3>Why We're the Team to Build This</h3>
+
+        <table>
+            <tr><th>Role</th><th>Background</th></tr>
+            <tr><td>CEO / Founder</td><td>Ahmet Demirci — Product & Engineering</td></tr>
+            <tr><td>CTO</td><td>Full-stack development, fintech experience</td></tr>
+            <tr><td>Advisors</td><td>Gig economy veterans, greeting card industry insiders</td></tr>
+        </table>
+
+        <h4>What We're Looking For</h4>
+        <ul>
+            <li>Operations lead (logistics background)</li>
+            <li>Marketing lead (consumer brand experience)</li>
+            <li>Growth lead (marketplace experience)</li>
+        </ul>
+    </div>
+    <span class="slide-number">13 / 18</span>
+</section>
+
+<!-- Slide 14: Financials -->
+<section class="section">
+    <div class="container">
+        <h2>Financials</h2>
+        <h3>5-Year Revenue Forecast</h3>
+
+        <table>
+            <tr><th>Year</th><th>Orders/Month</th><th>Revenue</th><th>Gross Profit</th></tr>
+            <tr><td>Y1</td><td>5,000</td><td>$1.3M</td><td>$260K</td></tr>
+            <tr><td>Y2</td><td>25,000</td><td>$6.6M</td><td>$1.3M</td></tr>
+            <tr><td>Y3</td><td>100,000</td><td>$26.4M</td><td>$5.3M</td></tr>
+            <tr><td>Y4</td><td>300,000</td><td>$79.2M</td><td>$15.8M</td></tr>
+            <tr style="background: rgba(184, 115, 51, 0.1);"><td style="color: var(--copper); font-weight: 600;">Y5</td><td style="color: var(--copper); font-weight: 600;">750,000</td><td style="color: var(--copper); font-weight: 600;">$198M</td><td style="color: var(--copper); font-weight: 600;">$40M</td></tr>
+        </table>
+
+        <h4>Key Assumptions</h4>
+        <ul>
+            <li>AOV grows to $26 by Y3 (add-on attachment)</li>
+            <li>Gross margin improves to 25% at scale</li>
+            <li>CAC payback: 3 months</li>
+            <li>LTV:CAC ratio: 5:1</li>
+        </ul>
+    </div>
+    <span class="slide-number">14 / 18</span>
+</section>
+
+<!-- Slide 15: The Ask -->
+<section class="section">
+    <div class="container">
+        <h2>The Ask</h2>
+        <p class="big-number">$1.5M</p>
+        <p style="font-size: 1.3rem; color: var(--mist); margin-top: 0;">Seed Round</p>
+
+        <div class="grid-3" style="margin-top: 2rem;">
+            <div class="card stat-card">
+                <span class="number">$8M</span>
+                <span class="label">Pre-Money Valuation</span>
+            </div>
+            <div class="card stat-card">
+                <span class="number">15.8%</span>
+                <span class="label">Equity Offered</span>
+            </div>
+            <div class="card stat-card">
+                <span class="number">18 mo</span>
+                <span class="label">Runway</span>
+            </div>
+        </div>
+
+        <h4>Use of Funds</h4>
+        <table>
+            <tr><th>Category</th><th>Amount</th><th>%</th></tr>
+            <tr><td>Engineering & Product</td><td>$500K</td><td>33%</td></tr>
+            <tr><td>Marketing & Growth</td><td>$450K</td><td>30%</td></tr>
+            <tr><td>Operations & Mailer Acquisition</td><td>$300K</td><td>20%</td></tr>
+            <tr><td>G&A / Working Capital</td><td>$250K</td><td>17%</td></tr>
+        </table>
+
+        <h4>Milestones This Round Achieves</h4>
+        <ul>
+            <li>Launch in 5 Texas markets</li>
+            <li>10,000 monthly active customers</li>
+            <li>500 active Mailers</li>
+            <li>$500K ARR — Series A ready by month 18</li>
+        </ul>
+    </div>
+    <span class="slide-number">15 / 18</span>
+</section>
+
+<!-- Slide 16: Why Now -->
+<section class="section">
+    <div class="container">
+        <h2>Why Now?</h2>
+        <h3>The Timing is Perfect</h3>
+
+        <ul>
+            <li><strong class="highlight">Post-pandemic reconnection</strong> — People crave meaningful gestures</li>
+            <li><strong class="highlight">Gig economy maturity</strong> — Workers know how this works</li>
+            <li><strong class="highlight">Last-mile infrastructure</strong> — Delivery expectations are set</li>
+            <li><strong class="highlight">Digital fatigue peak</strong> — Analog is becoming premium</li>
+            <li><strong class="highlight">AI personalization</strong> — Can help write better messages (future)</li>
+        </ul>
+
+        <blockquote style="margin-top: 3rem;">
+            The greeting card industry hasn't innovated in 50 years. We're bringing it into the 21st century with a human touch.
+        </blockquote>
+    </div>
+    <span class="slide-number">16 / 18</span>
+</section>
+
+<!-- Slide 17: Vision -->
+<section class="section">
+    <div class="container">
+        <h2>Vision</h2>
+        <h3>The Future of NearRun</h3>
+
+        <div class="grid-3">
+            <div class="card">
+                <p class="phase-label">Short Term • 2 Years</p>
+                <p style="margin-top: 1rem;">The go-to platform for meaningful, hand-delivered card moments</p>
+            </div>
+            <div class="card">
+                <p class="phase-label">Medium Term • 5 Years</p>
+                <p style="margin-top: 1rem;">The "Uber of meaningful gestures" — cards, gifts, experiences</p>
+            </div>
+            <div class="card" style="background: rgba(184, 115, 51, 0.15); border-color: var(--copper);">
+                <p class="phase-label">Long Term • 10 Years</p>
+                <h4 style="margin-top: 0.5rem; color: var(--bone);">The Memory Layer of Life</h4>
+                <ul>
+                    <li>Legacy Letters for everyone</li>
+                    <li>AI-assisted personalization</li>
+                    <li>Life event integration</li>
+                </ul>
+            </div>
+        </div>
+
+        <blockquote style="margin-top: 3rem; font-size: 1.3rem;">
+            In a world of DMs and texts, a NearRun card says: You matter enough for me to do something real.
+        </blockquote>
+    </div>
+    <span class="slide-number">17 / 18</span>
+</section>
+
+<!-- Slide 18: Closing -->
+<section class="section closing hero">
+    <div class="container" style="text-align: center;">
+        <h1>NearRun</h1>
+        <p style="font-size: 1.5rem; color: var(--bone); text-align: center; max-width: none;">Real Cards. Real People. Real Connection.</p>
+
+        <div class="divider"></div>
+
+        <div class="grid-2" style="max-width: 700px; margin: 2rem auto;">
+            <div style="text-align: left;">
+                <p><span class="highlight">The Ask:</span> $1.5M Seed Round</p>
+                <p><span class="highlight">The Opportunity:</span> $28B market</p>
+            </div>
+            <div style="text-align: left;">
+                <p><span class="highlight">The Product:</span> Built & ready</p>
+                <p><span class="highlight">The Timing:</span> Perfect storm</p>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <p style="font-size: 1.3rem; color: var(--bone); font-weight: 600;">Ahmet Demirci</p>
+            <p style="color: var(--mist);">Founder & CEO</p>
+            <p style="color: var(--smoke); margin-top: 1.5rem;">ahamdide@gmail.com &bull; www.nearrun.app</p>
+        </div>
+    </div>
+    <span class="slide-number">18 / 18</span>
+</section>
+
+</body>
+</html>

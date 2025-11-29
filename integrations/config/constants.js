@@ -1,5 +1,5 @@
 /**
- * Application constants for MailIt
+ * Application constants for NearRun
  */
 
 module.exports = {
@@ -94,10 +94,10 @@ module.exports = {
    * Cloudinary folder names
    */
   CLOUDINARY_FOLDERS: {
-    CARDS: 'mailit/cards',
-    PROOFS: 'mailit/delivery-proofs',
-    TEMPLATES: 'mailit/templates',
-    USERS: 'mailit/users'
+    CARDS: 'nearrun/cards',
+    PROOFS: 'nearrun/delivery-proofs',
+    TEMPLATES: 'nearrun/templates',
+    USERS: 'nearrun/users'
   },
 
   /**

@@ -1,5 +1,5 @@
 /**
- * MailIt Integrations
+ * NearRun Integrations
  * Main entry point for all integration services
  */
 
@@ -14,7 +14,7 @@ const constants = require('./config/constants');
  * Initialize all integrations
  */
 function initialize() {
-  console.log('Initializing MailIt integrations...');
+  console.log('Initializing NearRun integrations...');
   console.log(`Environment: ${config.env}`);
   console.log(`Mock Mode: ${config.mockMode}`);
 

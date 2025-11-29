@@ -1,4 +1,4 @@
-# MailIt Integrations - Quick Reference
+# NearRun Integrations - Quick Reference
 
 ## Setup
 
@@ -60,11 +60,11 @@ const result = await integrations.stripe.webhooks.handleEvent(event);
 ```javascript
 // Upload image
 const result = await integrations.cloudinary.uploadImage(
-  buffer, 'mailit/cards', 'card_123'
+  buffer, 'nearrun/cards', 'card_123'
 );
 
 // Upload from URL
-const result = await integrations.cloudinary.uploadFromUrl(url, 'mailit/cards');
+const result = await integrations.cloudinary.uploadFromUrl(url, 'nearrun/cards');
 
 // Get optimized URL
 const url = integrations.cloudinary.getOptimizedUrl(publicId, 'card_preview');
@@ -224,10 +224,10 @@ try {
 
 ## Cloudinary Folders
 
-- `mailit/cards` - Card images
-- `mailit/delivery-proofs` - Delivery photos
-- `mailit/templates` - Template images
-- `mailit/users` - User avatars
+- `nearrun/cards` - Card images
+- `nearrun/delivery-proofs` - Delivery photos
+- `nearrun/templates` - Template images
+- `nearrun/users` - User avatars
 
 ## Environment Variables
 

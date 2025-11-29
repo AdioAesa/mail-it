@@ -1,6 +1,6 @@
-# MailIt Integrations
+# NearRun Integrations
 
-Integration layer for MailIt - handles Stripe payments, Cloudinary images, geocoding, and email notifications.
+Integration layer for NearRun - handles Stripe payments, Cloudinary images, geocoding, and email notifications.
 
 ## Installation
 
@@ -29,7 +29,7 @@ cp .env.example .env
 
 **Email (Resend):**
 - `RESEND_API_KEY` - Resend API key
-- `EMAIL_FROM` - From email address (e.g., noreply@mailit.app)
+- `EMAIL_FROM` - From email address (e.g., noreply@nearrun.app)
 
 **Optional:**
 - `GEOCODING_API_KEY` - If using paid geocoding service
@@ -79,8 +79,8 @@ const account = await stripe.connect.createAccount(
 // Get onboarding link
 const link = await stripe.connect.createAccountLink(
   account.id,
-  'https://mailit.app/mailer/onboarding/refresh',
-  'https://mailit.app/mailer/onboarding/complete'
+  'https://nearrun.app/mailer/onboarding/refresh',
+  'https://nearrun.app/mailer/onboarding/complete'
 );
 
 // Check account status
@@ -129,14 +129,14 @@ const { cloudinary } = integrations;
 // Upload image from buffer
 const result = await cloudinary.uploadImage(
   imageBuffer,
-  'mailit/cards',
+  'nearrun/cards',
   'card_123'
 );
 
 // Upload from URL
 const result = await cloudinary.uploadFromUrl(
   'https://example.com/image.jpg',
-  'mailit/cards'
+  'nearrun/cards'
 );
 
 // Get optimized URL
@@ -251,7 +251,7 @@ await notifications.sendOrderConfirmation(
 await notifications.sendDeliveryConfirmation(
   'customer@email.com',
   order,
-  'https://res.cloudinary.com/mailit/image/upload/proof_123.jpg',
+  'https://res.cloudinary.com/nearrun/image/upload/proof_123.jpg',
   {
     deliveredAt: new Date(),
     mailerName: 'Bob Smith',
@@ -432,8 +432,8 @@ Before deploying to production:
 ## Support
 
 For issues or questions:
-- Email: dev@mailit.app
-- Documentation: https://docs.mailit.app
+- Email: dev@nearrun.app
+- Documentation: https://docs.nearrun.app
 
 ## License
 

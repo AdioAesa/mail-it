@@ -1,7 +1,7 @@
 {
-  "name": "mailit-backend",
+  "name": "nearrun-backend",
   "version": "1.0.0",
-  "description": "MailIt Backend API - Gig-economy app for hand-delivered cards and letters",
+  "description": "NearRun Backend API - Gig-economy app for hand-delivered cards and letters",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
@@ -15,7 +15,7 @@
     "test:geocoding": "node scripts/test-geocoding.js"
   },
   "keywords": [
-    "mailit",
+    "nearrun",
     "delivery",
     "cards",
     "gig-economy"

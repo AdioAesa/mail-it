@@ -87,7 +87,7 @@ export const geocodingAPI = {
 
     try {
       let response = await fetch(structuredUrl, {
-        headers: { 'User-Agent': 'MailIt App (contact@mailit.com)' }
+        headers: { 'User-Agent': 'NearRun App (contact@nearrun.com)' }
       })
       let data = await response.json()
 
@@ -96,7 +96,7 @@ export const geocodingAPI = {
         const query = `${street}, ${city}, ${state} ${zipCode}, USA`
         const freeFormUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`
         response = await fetch(freeFormUrl, {
-          headers: { 'User-Agent': 'MailIt App (contact@mailit.com)' }
+          headers: { 'User-Agent': 'NearRun App (contact@nearrun.com)' }
         })
         data = await response.json()
       }
@@ -106,7 +106,7 @@ export const geocodingAPI = {
         const fallbackQuery = `${city}, ${state} ${zipCode}, USA`
         const fallbackUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(fallbackQuery)}&format=json&limit=1`
         response = await fetch(fallbackUrl, {
-          headers: { 'User-Agent': 'MailIt App (contact@mailit.com)' }
+          headers: { 'User-Agent': 'NearRun App (contact@nearrun.com)' }
         })
         data = await response.json()
       }

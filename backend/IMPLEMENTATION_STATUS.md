@@ -1,4 +1,4 @@
-# MailIt Backend - Implementation Status
+# NearRun Backend - Implementation Status
 
 ## What's Been Built
 
@@ -158,7 +158,7 @@ Run through all route files and services to update field names:
 ### 2. Install Dependencies
 
 ```bash
-cd /home/ahdemirci/mailit/backend
+cd /home/ahdemirci/nearrun/backend
 npm install
 ```
 

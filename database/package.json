@@ -1,7 +1,7 @@
 {
-  "name": "mailit-database",
+  "name": "nearrun-database",
   "version": "1.0.0",
-  "description": "Database layer for MailIt - Prisma ORM setup",
+  "description": "Database layer for NearRun - Prisma ORM setup",
   "main": "index.js",
   "scripts": {
     "db:migrate": "prisma migrate dev",
@@ -16,7 +16,7 @@
   "keywords": [
     "prisma",
     "postgresql",
-    "mailit",
+    "nearrun",
     "database"
   ],
   "author": "",

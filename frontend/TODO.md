@@ -1,4 +1,4 @@
-# MailIt Frontend - TODO List
+# NearRun Frontend - TODO List
 
 ## 🔴 Critical (Required for MVP)
 

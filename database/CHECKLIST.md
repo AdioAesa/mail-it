@@ -1,16 +1,16 @@
-# MailIt Database Setup Checklist
+# NearRun Database Setup Checklist
 
 ## Files Created ✓
 
-- [x] `/home/ahdemirci/mailit/database/package.json` (769 bytes)
-- [x] `/home/ahdemirci/mailit/database/.env.example` (239 bytes)
-- [x] `/home/ahdemirci/mailit/database/.gitignore` (162 bytes)
-- [x] `/home/ahdemirci/mailit/database/prisma/schema.prisma` (272 lines)
-- [x] `/home/ahdemirci/mailit/database/prisma/seed.js` (548 lines)
-- [x] `/home/ahdemirci/mailit/database/README.md` (8.5 KB)
-- [x] `/home/ahdemirci/mailit/database/QUICK_START.md` (3.0 KB)
-- [x] `/home/ahdemirci/mailit/database/SCHEMA_OVERVIEW.md` (8.3 KB)
-- [x] `/home/ahdemirci/mailit/database/PROJECT_SUMMARY.md` (11 KB)
+- [x] `/home/ahdemirci/nearrun/database/package.json` (769 bytes)
+- [x] `/home/ahdemirci/nearrun/database/.env.example` (239 bytes)
+- [x] `/home/ahdemirci/nearrun/database/.gitignore` (162 bytes)
+- [x] `/home/ahdemirci/nearrun/database/prisma/schema.prisma` (272 lines)
+- [x] `/home/ahdemirci/nearrun/database/prisma/seed.js` (548 lines)
+- [x] `/home/ahdemirci/nearrun/database/README.md` (8.5 KB)
+- [x] `/home/ahdemirci/nearrun/database/QUICK_START.md` (3.0 KB)
+- [x] `/home/ahdemirci/nearrun/database/SCHEMA_OVERVIEW.md` (8.3 KB)
+- [x] `/home/ahdemirci/nearrun/database/PROJECT_SUMMARY.md` (11 KB)
 
 ## Schema Components ✓
 
@@ -243,4 +243,4 @@ package.json            769 bytes
 
 ## Ready to Deploy! 🚀
 
-The database layer is complete and ready for integration with your MailIt app.
+The database layer is complete and ready for integration with your NearRun app.

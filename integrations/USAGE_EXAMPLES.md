@@ -1,11 +1,11 @@
-# MailIt Integrations - Usage Examples
+# NearRun Integrations - Usage Examples
 
 Complete real-world examples for common workflows.
 
 ## Complete Order Flow
 
 ```javascript
-const integrations = require('@mailit/integrations');
+const integrations = require('@nearrun/integrations');
 
 // Initialize once at app startup
 integrations.initialize();
@@ -240,7 +240,7 @@ async function completeDelivery(jobId, proofImageBuffer, notes) {
   // 1. Upload delivery proof to Cloudinary
   const upload = await integrations.cloudinary.uploadImage(
     proofImageBuffer,
-    'mailit/delivery-proofs',
+    'nearrun/delivery-proofs',
     `proof_${job.orderId}_${Date.now()}`
   );
 
@@ -440,7 +440,7 @@ async function uploadCustomCard(orderId, imageBuffer) {
   // 1. Upload to Cloudinary with multiple sizes
   const result = await integrations.cloudinary.uploadWithUrls(
     imageBuffer,
-    'mailit/cards',
+    'nearrun/cards',
     `card_${orderId}`
   );
 
@@ -531,4 +531,4 @@ const payment = await withErrorHandling(
 );
 ```
 
-These examples demonstrate real-world integration patterns for MailIt's core workflows.
+These examples demonstrate real-world integration patterns for NearRun's core workflows.

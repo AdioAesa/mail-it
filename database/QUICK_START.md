@@ -1,9 +1,9 @@
-# MailIt Database - Quick Start
+# NearRun Database - Quick Start
 
 ## Setup (First Time)
 
 ```bash
-cd /home/ahdemirci/mailit/database
+cd /home/ahdemirci/nearrun/database
 
 # 1. Install dependencies
 npm install
@@ -12,7 +12,7 @@ npm install
 cp .env.example .env
 
 # 3. Edit .env and add your PostgreSQL connection string
-# DATABASE_URL="postgresql://user:password@localhost:5432/mailit"
+# DATABASE_URL="postgresql://user:password@localhost:5432/nearrun"
 
 # 4. Generate Prisma Client
 npm run db:generate

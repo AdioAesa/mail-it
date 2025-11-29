@@ -23,7 +23,7 @@ const Navbar = () => {
               </span>
             </div>
             <span className="text-2xl font-serif font-bold text-ink-black group-hover:text-burgundy-700 transition-colors">
-              MailIt
+              NearRun
             </span>
           </Link>
 

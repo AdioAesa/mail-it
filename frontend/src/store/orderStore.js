@@ -83,7 +83,7 @@ const useOrderStore = create(
       }),
     }),
     {
-      name: 'mailit-order-storage', // localStorage key
+      name: 'nearrun-order-storage', // localStorage key
       partialize: (state) => ({
         // Only persist these fields
         cardType: state.cardType,

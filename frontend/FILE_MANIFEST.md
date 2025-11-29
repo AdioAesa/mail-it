@@ -1,4 +1,4 @@
-# MailIt Frontend - Complete File Manifest
+# NearRun Frontend - Complete File Manifest
 
 ## 📦 Total Files Created: 41
 

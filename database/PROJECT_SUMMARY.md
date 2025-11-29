@@ -1,9 +1,9 @@
-# MailIt Database Layer - Complete Setup
+# NearRun Database Layer - Complete Setup
 
 ## Project Structure
 
 ```
-/home/ahdemirci/mailit/database/
+/home/ahdemirci/nearrun/database/
 ├── package.json              # Dependencies and scripts
 ├── .env.example              # Environment template
 ├── .gitignore               # Git ignore rules
@@ -134,7 +134,7 @@ npm run db:setup            # Full setup (generate + migrate + seed)
 
 **.env.example:**
 ```
-DATABASE_URL="postgresql://user:password@localhost:5432/mailit?schema=public"
+DATABASE_URL="postgresql://user:password@localhost:5432/nearrun?schema=public"
 ```
 
 **.gitignore:**
@@ -203,7 +203,7 @@ DELIVERED (completed)
   deliveryFeeCents: 300,     // Delivery fee
   addOnsTotalCents: 1200,    // Chocolates
   totalPriceCents: 2200,     // Customer pays $22.00
-  platformFeeCents: 330,     // MailIt keeps $3.30 (15%)
+  platformFeeCents: 330,     // NearRun keeps $3.30 (15%)
   mailerPayoutCents: 1870    // Mailer gets $18.70
 }
 ```
@@ -214,7 +214,7 @@ DELIVERED (completed)
 
 ```bash
 # 1. Navigate to database directory
-cd /home/ahdemirci/mailit/database
+cd /home/ahdemirci/nearrun/database
 
 # 2. Install dependencies
 npm install
@@ -223,7 +223,7 @@ npm install
 cp .env.example .env
 
 # 4. Edit .env with your PostgreSQL URL
-# DATABASE_URL="postgresql://user:password@localhost:5432/mailit"
+# DATABASE_URL="postgresql://user:password@localhost:5432/nearrun"
 
 # 5. Generate Prisma Client
 npm run db:generate
@@ -417,7 +417,7 @@ You should see:
 
 ## File Locations
 
-All files are in: `/home/ahdemirci/mailit/database/`
+All files are in: `/home/ahdemirci/nearrun/database/`
 
 - Schema: `prisma/schema.prisma`
 - Seed: `prisma/seed.js`

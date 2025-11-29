@@ -1,7 +1,7 @@
-# MailIt Integrations Layer - Build Summary
+# NearRun Integrations Layer - Build Summary
 
 ## Overview
-Complete integration layer for MailIt app with Stripe, Cloudinary, Geocoding, and Email notifications.
+Complete integration layer for NearRun app with Stripe, Cloudinary, Geocoding, and Email notifications.
 
 ## Files Created
 
@@ -177,7 +177,7 @@ const payment = await integrations.stripe.payments.createPaymentIntent(
 ```javascript
 const result = await integrations.cloudinary.uploadImage(
   buffer,
-  'mailit/cards',
+  'nearrun/cards',
   'card_123'
 );
 ```
@@ -228,7 +228,7 @@ await integrations.notifications.sendOrderConfirmation(
 ✅ Tested workflows
 
 ## Files Ready to Copy
-All files in `/home/ahdemirci/mailit/integrations/` are ready to be copied into your backend project.
+All files in `/home/ahdemirci/nearrun/integrations/` are ready to be copied into your backend project.
 
 ## Estimated Development Time Saved
 - Stripe integration: ~8 hours

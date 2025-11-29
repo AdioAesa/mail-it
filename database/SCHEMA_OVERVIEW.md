@@ -189,7 +189,7 @@ To avoid floating-point precision issues, all money is stored as integers:
 - `deliveryFeeCents` - Delivery fee
 - `addOnsTotalCents` - Sum of add-on prices
 - `totalPriceCents` - Total customer pays
-- `platformFeeCents` - MailIt's cut
+- `platformFeeCents` - NearRun's cut
 - `mailerPayoutCents` - Mailer receives
 
 Example:

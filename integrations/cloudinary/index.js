@@ -31,7 +31,7 @@ function initialize() {
 /**
  * Upload image from buffer
  * @param {Buffer} buffer - Image buffer
- * @param {string} folder - Cloudinary folder (e.g., 'mailit/cards')
+ * @param {string} folder - Cloudinary folder (e.g., 'nearrun/cards')
  * @param {string} publicId - Optional public ID
  * @param {Object} options - Additional upload options
  * @returns {Promise<Object>} Upload result

@@ -131,7 +131,7 @@ async function sendOrderConfirmation(email, order) {
     cardPrice: (order.cardPrice / 100).toFixed(2),
     deliveryFee: order.deliveryFee ? (order.deliveryFee / 100).toFixed(2) : null,
     totalAmount: (order.totalAmount / 100).toFixed(2),
-    trackingUrl: `${process.env.APP_URL || 'https://mailit.app'}/orders/${order.id}`
+    trackingUrl: `${process.env.APP_URL || 'https://nearrun.app'}/orders/${order.id}`
   };
 
   const html = renderTemplate(template, data);
@@ -174,8 +174,8 @@ async function sendMailerAssigned(email, order, mailer) {
       <strong>Delivering to:</strong> ${order.recipientName}<br>
       <strong>Expected delivery:</strong> ${order.expectedDeliveryDate || 'Today'}</p>
       <p>You'll receive another email with photo proof once the card is delivered.</p>
-      <p>Track your order: <a href="${process.env.APP_URL || 'https://mailit.app'}/orders/${order.id}">View Order Status</a></p>
-      <p>Thank you for using MailIt! 💚</p>
+      <p>Track your order: <a href="${process.env.APP_URL || 'https://nearrun.app'}/orders/${order.id}">View Order Status</a></p>
+      <p>Thank you for using NearRun! 💚</p>
     </div>
   `;
 
@@ -205,7 +205,7 @@ async function sendDeliveryConfirmation(email, order, proofUrl, delivery = {}) {
     deliveryTime: deliveryDate.toLocaleTimeString(),
     mailerName: delivery.mailerName || 'Your mailer',
     deliveryNotes: delivery.notes,
-    ratingUrl: `${process.env.APP_URL || 'https://mailit.app'}/orders/${order.id}/rate`
+    ratingUrl: `${process.env.APP_URL || 'https://nearrun.app'}/orders/${order.id}/rate`
   };
 
   const html = renderTemplate(template, data);
@@ -241,9 +241,9 @@ async function sendMailerNewJob(email, job) {
     distance: job.distance ? job.distance.toFixed(1) : 'Unknown',
     hasSpecialInstructions: !!job.specialInstructions,
     specialInstructions: job.specialInstructions,
-    acceptJobUrl: `${process.env.APP_URL || 'https://mailit.app'}/mailer/jobs/${job.id}/accept`,
+    acceptJobUrl: `${process.env.APP_URL || 'https://nearrun.app'}/mailer/jobs/${job.id}/accept`,
     expiresInMinutes: job.expiresInMinutes || 30,
-    unsubscribeUrl: `${process.env.APP_URL || 'https://mailit.app'}/mailer/notifications/unsubscribe`
+    unsubscribeUrl: `${process.env.APP_URL || 'https://nearrun.app'}/mailer/notifications/unsubscribe`
   };
 
   const html = renderTemplate(template, data);
@@ -262,11 +262,11 @@ async function sendMailerNewJob(email, job) {
  * @returns {Promise<Object>} Send result
  */
 async function sendMailerWelcome(email, mailer) {
-  const subject = 'Welcome to MailIt! Start Earning Today';
+  const subject = 'Welcome to NearRun! Start Earning Today';
 
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-      <h2 style="color: #2196F3;">Welcome to MailIt, ${mailer.name}! 🎉</h2>
+      <h2 style="color: #2196F3;">Welcome to NearRun, ${mailer.name}! 🎉</h2>
       <p>You're all set to start earning money by delivering happiness!</p>
 
       <div style="background-color: #E3F2FD; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -284,13 +284,13 @@ async function sendMailerWelcome(email, mailer) {
       <p><strong>Estimated Earnings:</strong> $${((config.pricing.basePrices.BIRTHDAY * 0.7) / 100).toFixed(2)} - $${((config.pricing.basePrices.CUSTOM * 0.7) / 100).toFixed(2)} per delivery</p>
 
       <div style="text-align: center; margin: 30px 0;">
-        <a href="${process.env.APP_URL || 'https://mailit.app'}/mailer/dashboard"
+        <a href="${process.env.APP_URL || 'https://nearrun.app'}/mailer/dashboard"
            style="display: inline-block; padding: 15px 30px; background-color: #2196F3; color: white; text-decoration: none; border-radius: 6px; font-weight: 600;">
           Go to Dashboard
         </a>
       </div>
 
-      <p>Questions? We're here to help at support@mailit.app</p>
+      <p>Questions? We're here to help at support@nearrun.app</p>
       <p>Happy delivering! 💚</p>
     </div>
   `;
@@ -305,12 +305,12 @@ async function sendMailerWelcome(email, mailer) {
  * @returns {Promise<Object>} Send result
  */
 async function sendPasswordReset(email, resetToken) {
-  const resetUrl = `${process.env.APP_URL || 'https://mailit.app'}/reset-password?token=${resetToken}`;
+  const resetUrl = `${process.env.APP_URL || 'https://nearrun.app'}/reset-password?token=${resetToken}`;
 
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
       <h2>Reset Your Password</h2>
-      <p>You requested to reset your password for your MailIt account.</p>
+      <p>You requested to reset your password for your NearRun account.</p>
       <p>Click the button below to reset your password:</p>
       <div style="text-align: center; margin: 30px 0;">
         <a href="${resetUrl}"
@@ -327,7 +327,7 @@ async function sendPasswordReset(email, resetToken) {
     </div>
   `;
 
-  return await sendEmail(email, 'Reset Your MailIt Password', html);
+  return await sendEmail(email, 'Reset Your NearRun Password', html);
 }
 
 module.exports = {

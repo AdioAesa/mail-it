@@ -216,7 +216,7 @@ const Home = () => {
 
         <div className="max-w-6xl mx-auto relative">
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-center mb-4">
-            Why Choose MailIt?
+            Why Choose NearRun?
           </h2>
           <p className="text-ink-light text-center mb-16 font-script text-xl">
             Making meaningful connections, one card at a time

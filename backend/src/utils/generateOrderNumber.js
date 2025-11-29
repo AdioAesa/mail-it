@@ -1,6 +1,6 @@
 /**
  * Generate a unique order number in the format: ML-YYYY-XXXXX
- * ML = MailIt, YYYY = current year, XXXXX = random 5 digits
+ * ML = NearRun, YYYY = current year, XXXXX = random 5 digits
  */
 export function generateOrderNumber() {
   const year = new Date().getFullYear();

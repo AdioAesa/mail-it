@@ -1,6 +1,6 @@
-# MailIt Database
+# NearRun Database
 
-Prisma ORM setup for MailIt - a gig-economy app for hand-delivered cards and letters.
+Prisma ORM setup for NearRun - a gig-economy app for hand-delivered cards and letters.
 
 ## Tech Stack
 
@@ -35,7 +35,7 @@ Prisma ORM setup for MailIt - a gig-economy app for hand-delivered cards and let
 ### 1. Install Dependencies
 
 ```bash
-cd /home/ahdemirci/mailit/database
+cd /home/ahdemirci/nearrun/database
 npm install
 ```
 
@@ -46,7 +46,7 @@ npm install
 cp .env.example .env
 
 # Edit .env and add your database URL
-# Example: DATABASE_URL="postgresql://user:password@localhost:5432/mailit"
+# Example: DATABASE_URL="postgresql://user:password@localhost:5432/nearrun"
 ```
 
 ### 3. Run Migrations

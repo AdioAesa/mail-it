@@ -1,4 +1,4 @@
-# MailIt Integrations - Project Structure
+# NearRun Integrations - Project Structure
 
 ```
 integrations/

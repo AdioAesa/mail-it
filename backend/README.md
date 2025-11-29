@@ -1,6 +1,6 @@
-# MailIt Backend API
+# NearRun Backend API
 
-A complete Node.js + Express backend for MailIt - a gig-economy app for hand-delivered cards and letters.
+A complete Node.js + Express backend for NearRun - a gig-economy app for hand-delivered cards and letters.
 
 ## Tech Stack
 

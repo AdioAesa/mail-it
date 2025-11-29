@@ -10,7 +10,7 @@ process.env.NODE_ENV = 'development';
 const integrations = require('./index');
 
 async function runTests() {
-  console.log('=== MailIt Integration Tests ===\n');
+  console.log('=== NearRun Integration Tests ===\n');
 
   // Initialize
   integrations.initialize();
@@ -65,7 +65,7 @@ async function runTests() {
     const mockBuffer = Buffer.from('fake image data');
     const upload = await integrations.cloudinary.uploadImage(
       mockBuffer,
-      'mailit/cards',
+      'nearrun/cards',
       'test_card_123'
     );
     console.log(`Image uploaded: ${upload.public_id}`);

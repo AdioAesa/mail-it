@@ -33,7 +33,7 @@ async function uploadToCloudinary(buffer, folder) {
   return new Promise((resolve, reject) => {
     const uploadStream = cloudinary.uploader.upload_stream(
       {
-        folder: `mailit/${folder}`,
+        folder: `nearrun/${folder}`,
         resource_type: 'image',
         transformation: [
           { quality: 'auto', fetch_format: 'auto' }

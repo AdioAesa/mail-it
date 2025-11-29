@@ -107,7 +107,7 @@ router.post('/register', requireAuth(), authenticateUser, validateMailerRegistra
 
   // Create Stripe Connect account
   const stripeAccount = await createConnectAccount(req.user.email, {
-    url: `https://mailit.com/mailer/${userId}`
+    url: `https://nearrun.com/mailer/${userId}`
   });
 
   // Create mailer profile
