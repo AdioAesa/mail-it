@@ -7,52 +7,47 @@ const Navbar = () => {
   const isMailerRoute = location.pathname.startsWith('/mailer')
 
   return (
-    <nav className="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
+    <nav className="bg-paper-white/95 backdrop-blur-md border-b border-paper-kraft/30 sticky top-0 z-40 shadow-soft">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-primary-500 to-accent-500 rounded-lg flex items-center justify-center">
-              <svg
-                className="w-5 h-5 text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
+          <Link to="/" className="flex items-center space-x-3 group">
+            {/* Wax seal logo */}
+            <div className="relative w-10 h-10">
+              <div className="absolute inset-0 bg-gradient-to-br from-burgundy-500 via-burgundy-600 to-burgundy-700 rounded-full shadow-wax">
+                {/* Highlight */}
+                <div className="absolute inset-1 rounded-full bg-gradient-to-br from-white/20 to-transparent" style={{ clipPath: 'ellipse(60% 40% at 30% 30%)' }} />
+              </div>
+              <span className="absolute inset-0 flex items-center justify-center font-serif font-bold text-cream-50 text-lg">
+                M
+              </span>
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
+            <span className="text-2xl font-serif font-bold text-ink-black group-hover:text-burgundy-700 transition-colors">
               MailIt
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-8">
             {!isMailerRoute && (
               <>
                 <Link
                   to="/create"
-                  className="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+                  className="text-ink-medium hover:text-burgundy-600 font-medium transition-colors ink-underline"
                 >
                   Send a Card
                 </Link>
                 <SignedIn>
                   <Link
                     to="/orders"
-                    className="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+                    className="text-ink-medium hover:text-burgundy-600 font-medium transition-colors ink-underline"
                   >
                     My Orders
                   </Link>
                 </SignedIn>
                 <Link
                   to="/mailer/register"
-                  className="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+                  className="text-ink-medium hover:text-burgundy-600 font-medium transition-colors ink-underline"
                 >
                   Become a Mailer
                 </Link>
@@ -63,13 +58,13 @@ const Navbar = () => {
               <>
                 <Link
                   to="/mailer"
-                  className="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+                  className="text-ink-medium hover:text-burgundy-600 font-medium transition-colors ink-underline"
                 >
                   Dashboard
                 </Link>
                 <Link
                   to="/"
-                  className="text-gray-700 hover:text-primary-600 font-medium transition-colors"
+                  className="text-ink-medium hover:text-burgundy-600 font-medium transition-colors ink-underline"
                 >
                   Customer Portal
                 </Link>
@@ -86,12 +81,19 @@ const Navbar = () => {
             </SignedOut>
 
             <SignedIn>
-              <UserButton afterSignOutUrl="/" />
+              <UserButton
+                afterSignOutUrl="/"
+                appearance={{
+                  elements: {
+                    avatarBox: 'w-9 h-9 ring-2 ring-paper-kraft/30 ring-offset-2 ring-offset-paper-white'
+                  }
+                }}
+              />
             </SignedIn>
           </div>
 
           {/* Mobile Menu Button & Auth */}
-          <div className="md:hidden flex items-center space-x-2">
+          <div className="md:hidden flex items-center space-x-3">
             <SignedOut>
               <SignInButton mode="modal">
                 <Button variant="outline" size="sm">
@@ -101,7 +103,14 @@ const Navbar = () => {
             </SignedOut>
 
             <SignedIn>
-              <UserButton afterSignOutUrl="/" />
+              <UserButton
+                afterSignOutUrl="/"
+                appearance={{
+                  elements: {
+                    avatarBox: 'w-9 h-9 ring-2 ring-paper-kraft/30'
+                  }
+                }}
+              />
             </SignedIn>
           </div>
         </div>
