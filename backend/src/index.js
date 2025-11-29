@@ -50,8 +50,29 @@ app.use((req, res, next) => {
 
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Clerk authentication middleware
-app.use(clerkMiddleware());
+// Clerk authentication middleware (skip for public API routes)
+app.use((req, res, next) => {
+  // Skip Clerk for public routes
+  const publicPaths = ['/api/mailer/nearby', '/api/health', '/api/templates', '/api/webhooks'];
+  const isPublic = publicPaths.some(path => req.path.startsWith(path));
+
+  if (isPublic) {
+    return next();
+  }
+
+  // Apply Clerk middleware for protected routes
+  try {
+    clerkMiddleware()(req, res, next);
+  } catch (error) {
+    // If Clerk fails (e.g., missing keys), continue without auth in development
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('Clerk middleware error, continuing without auth:', error.message);
+      next();
+    } else {
+      next(error);
+    }
+  }
+});
 
 // Custom auth middleware to sync users to our database
 // Only apply to non-webhook routes

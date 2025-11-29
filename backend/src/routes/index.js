@@ -11,10 +11,10 @@ const router = express.Router();
 // Public routes (no auth required)
 router.use('/webhooks', webhooksRoutes);
 router.use('/templates', templatesRoutes);
+router.use('/mailer', mailerRoutes); // Has mixed public and protected routes
 
 // Protected routes (auth required)
 router.use('/orders', requireAuth(), ordersRoutes);
-router.use('/mailer', requireAuth(), mailerRoutes);
 router.use('/upload', requireAuth(), uploadRoutes);
 
 // Health check

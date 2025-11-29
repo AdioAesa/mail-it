@@ -66,10 +66,64 @@ export const jobsAPI = {
 
 // Mailers API
 export const mailersAPI = {
-  register: (mailerData) => api.post('/mailers/register', mailerData),
-  getProfile: () => api.get('/mailers/profile'),
-  updateProfile: (data) => api.patch('/mailers/profile', data),
-  getEarnings: () => api.get('/mailers/earnings'),
+  register: (mailerData) => api.post('/mailer/register', mailerData),
+  getProfile: () => api.get('/mailer/profile'),
+  updateProfile: (data) => api.patch('/mailer/profile', data),
+  getEarnings: () => api.get('/mailer/earnings'),
+  getNearby: (lat, lng, radius = 15) =>
+    api.get('/mailer/nearby', { params: { lat, lng, radius } }),
+}
+
+// Geocoding API
+export const geocodingAPI = {
+  geocodeAddress: async (street, city, state, zipCode) => {
+    // Try structured query first for better results
+    const structuredUrl = `https://nominatim.openstreetmap.org/search?` +
+      `street=${encodeURIComponent(street)}&` +
+      `city=${encodeURIComponent(city)}&` +
+      `state=${encodeURIComponent(state)}&` +
+      `postalcode=${encodeURIComponent(zipCode)}&` +
+      `country=USA&format=json&limit=1`
+
+    try {
+      let response = await fetch(structuredUrl, {
+        headers: { 'User-Agent': 'MailIt App (contact@mailit.com)' }
+      })
+      let data = await response.json()
+
+      // If structured query fails, try free-form query
+      if (!data || data.length === 0) {
+        const query = `${street}, ${city}, ${state} ${zipCode}, USA`
+        const freeFormUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`
+        response = await fetch(freeFormUrl, {
+          headers: { 'User-Agent': 'MailIt App (contact@mailit.com)' }
+        })
+        data = await response.json()
+      }
+
+      // If still no results, try just city/state/zip
+      if (!data || data.length === 0) {
+        const fallbackQuery = `${city}, ${state} ${zipCode}, USA`
+        const fallbackUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(fallbackQuery)}&format=json&limit=1`
+        response = await fetch(fallbackUrl, {
+          headers: { 'User-Agent': 'MailIt App (contact@mailit.com)' }
+        })
+        data = await response.json()
+      }
+
+      if (!data || data.length === 0) {
+        throw new Error('Address not found')
+      }
+
+      return {
+        lat: parseFloat(data[0].lat),
+        lng: parseFloat(data[0].lon)
+      }
+    } catch (error) {
+      console.error('Geocoding error:', error)
+      throw new Error('Could not locate address. Please verify and try again.')
+    }
+  }
 }
 
 // Payment API
